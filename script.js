@@ -11,8 +11,17 @@ Book.prototype.info = function() {
   console.log(`${this.title} by ${this.author}, ${this.pageCount} pages, ${this.hasRead ? 'has read' : 'not read yet'}`);
 }
 
-function addBookToLibrary() {
-  // function
+function addBookToLibrary(title, author, pageCount, hasRead) {
+  myLibrary.push(new Book(title, author, pageCount, hasRead));
+  clearCards();
+  myLibrary.forEach((book) => createCard(book));
+}
+
+function clearCards() {
+  const container = document.querySelector('#pageContainer');
+  const cards = document.querySelectorAll('.card');
+
+  cards.forEach((card) => container.removeChild(card));
 }
 
 function processNewBookButton() {
@@ -46,21 +55,33 @@ function buildForm() {
   readCheckbox.type = 'checkbox';
   readCheckbox.setAttribute('id', 'readCheckbox');
 
+  const submitButton = document.createElement('button');
+  submitButton.textContent = 'Submit';
+  submitButton.type = 'button';
+  submitButton.addEventListener('click', () => {
+    addBookToLibrary(
+      titleInput.value,
+      authorInput.value,
+      Number(pageCountInput.value),
+      readCheckbox.checked
+    );
+  });
+
   // Form labels
   const titleInputLabel = document.createElement('label');
-  titleInputLabel.textContent = "Title";
+  titleInputLabel.textContent = 'Title';
   titleInputLabel.setAttribute('for', 'titleInput');
 
   const authorInputLabel = document.createElement('label');
-  authorInputLabel.textContent = "Author";
+  authorInputLabel.textContent = 'Author';
   authorInputLabel.setAttribute('for', 'authorInput');
   
   const pageCountInputLabel = document.createElement('label');
-  pageCountInputLabel.textContent = "Page Count";
+  pageCountInputLabel.textContent = 'Page Count';
   pageCountInputLabel.setAttribute('for', 'pageCountInput');
   
   const readCheckboxLabel = document.createElement('label');
-  readCheckboxLabel.textContent = "Read";
+  readCheckboxLabel.textContent = 'Read';
   readCheckboxLabel.setAttribute('for', 'readCheckbox');
   
 
@@ -77,6 +98,7 @@ function buildForm() {
   form.appendChild(readCheckboxLabel);
   form.appendChild(readCheckbox);
 
+  form.appendChild(submitButton);
 }
 
 function createCard(bookObject) {
