@@ -15,6 +15,30 @@ function addBookToLibrary() {
   // function
 }
 
+function createCard(bookObject) {
+  const card = document.createElement('div');
+  const bookTitle = document.createElement('h2');
+  const bookAuthor = document.createElement('h3');
+  const bookPageCount = document.createElement('p');
+  const bookReadStatus = document.createElement('p');
+
+  card.classList.add('card');
+  
+  bookTitle.textContent = bookObject.title;
+  bookAuthor.textContent = bookObject.author;
+  bookPageCount.textContent = `${bookObject.pageCount} pages`;
+  bookReadStatus.textContent = `${bookObject.hasRead ? 'read' : 'unread'}`;
+
+  card.appendChild(bookTitle);
+  card.appendChild(bookAuthor);
+  card.appendChild(bookPageCount);
+  card.appendChild(bookReadStatus);
+
+  const container = document.querySelector('#pageContainer');
+  container.appendChild(card);
+}
+
+// Example books
 const testBook1 = new Book('The Hobbit', 'J.R.R. Tolkien', 295, true);
 myLibrary.push(testBook1);
 
@@ -28,5 +52,5 @@ const testBook4 = new Book('Hyperion', 'Dan Simmons', 480, false);
 myLibrary.push(testBook4);
 
 myLibrary.forEach((book) => {
-  book.info();
+  createCard(book);
 });

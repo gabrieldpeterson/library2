@@ -1,3 +1,17 @@
 body {
     font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol";
 }
+
+#pageContainer {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 5px;
+}
+
+.card {
+    border: 1px solid black;
+    border-radius: 8px;
+    width: 300px;
+    height: 300px;
+    padding: 10px;
+}
