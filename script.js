@@ -15,6 +15,7 @@ function addBookToLibrary(title, author, pageCount, hasRead) {
   myLibrary.push(new Book(title, author, pageCount, hasRead));
   clearCards();
   myLibrary.forEach((book) => createCard(book));
+  clearInputFields();
 }
 
 function clearCards() {
@@ -22,6 +23,11 @@ function clearCards() {
   const cards = document.querySelectorAll('.card');
 
   cards.forEach((card) => container.removeChild(card));
+}
+
+function clearInputFields() {
+  const inputFields = document.querySelectorAll('input');
+  inputFields.forEach((input) => input.type === 'checkbox' ? input.checked = false : input.value = '');
 }
 
 function processNewBookButton() {
@@ -59,12 +65,18 @@ function buildForm() {
   submitButton.textContent = 'Submit';
   submitButton.type = 'button';
   submitButton.addEventListener('click', () => {
-    addBookToLibrary(
-      titleInput.value,
-      authorInput.value,
-      Number(pageCountInput.value),
-      readCheckbox.checked
-    );
+    if (titleInput.value === '' || authorInput.value === '' || pageCountInput.value === '') {
+      alert('Field is missing');
+    } else if (isNaN(pageCountInput.value)){
+      alert('Invalid page count');
+    } else {
+      addBookToLibrary(
+        titleInput.value,
+        authorInput.value,
+        Number(pageCountInput.value),
+        readCheckbox.checked
+      );
+    }
   });
 
   // Form labels
