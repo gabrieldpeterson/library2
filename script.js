@@ -42,6 +42,7 @@ function buildForm() {
   const container = document.querySelector('#pageForm');
 
   const form = document.createElement('form');
+  form.setAttribute('id', 'form');
   container.appendChild(form);
 
   // Form elements

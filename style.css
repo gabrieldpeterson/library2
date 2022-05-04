@@ -8,6 +8,28 @@ body {
     gap: 5px;
 }
 
+#pageForm {
+    border: 1px solid black;
+    border-radius: 8px;
+    padding: 10px;
+    margin: 10px 0px;
+    width: fit-content;
+}
+
+#newBook {
+    margin: 5px 0px;
+}
+
+#form {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 3px;
+}
+
+input {
+    margin-right: 8px;
+}
+
 .card {
     border: 1px solid black;
     border-radius: 8px;
