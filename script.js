@@ -114,12 +114,15 @@ function buildForm() {
   form.appendChild(submitButton);
 }
 
+// The card element
 function createCard(bookObject) {
   const card = document.createElement('div');
   const bookTitle = document.createElement('h2');
   const bookAuthor = document.createElement('h3');
   const bookPageCount = document.createElement('p');
   const bookReadStatus = document.createElement('p');
+  const readStatusButton = document.createElement('button');
+  const removeBookButton = document.createElement('button');
 
   card.classList.add('card');
   
@@ -127,11 +130,18 @@ function createCard(bookObject) {
   bookAuthor.textContent = bookObject.author;
   bookPageCount.textContent = `${bookObject.pageCount} pages`;
   bookReadStatus.textContent = `${bookObject.hasRead ? 'read' : 'unread'}`;
+  readStatusButton.textContent = `${bookObject.hasRead ? 'Mark Unread' : 'Mark Read'}`;
+  removeBookButton.textContent = 'Remove from Library';
+
+  readStatusButton.setAttribute('id', 'readStatusButton');
+  removeBookButton.setAttribute('id', 'removeButton');
 
   card.appendChild(bookTitle);
   card.appendChild(bookAuthor);
   card.appendChild(bookPageCount);
   card.appendChild(bookReadStatus);
+  card.appendChild(readStatusButton);
+  card.appendChild(removeBookButton);
 
   const container = document.querySelector('#pageContainer');
   container.appendChild(card);

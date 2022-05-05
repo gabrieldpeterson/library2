@@ -31,11 +31,26 @@ input {
 }
 
 .card {
+    display: flex;
+    flex-direction: column;
     border: 1px solid black;
     border-radius: 8px;
     width: 250px;
     height: 300px;
     padding: 10px;
+}
+
+#readStatusButton {
+    width: fit-content;
+}
+
+#removeButton {
+    margin-top: auto;
+    background-color: red;
+    width: fit-content;
+    align-self: center;
+    border-radius: 3px;
+    border: 0;
 }
 
 .invisible {
