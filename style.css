@@ -44,7 +44,7 @@ input {
     width: fit-content;
 }
 
-#removeButton {
+.removeButton {
     margin-top: auto;
     background-color: red;
     color: white;

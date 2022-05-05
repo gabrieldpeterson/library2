@@ -138,11 +138,18 @@ function createCard(bookObject, index) {
   removeBookButton.textContent = 'Remove from Library';
 
   readStatusButton.classList.add('readStatusButton');
+  removeBookButton.classList.add('removeButton');
   readStatusButton.setAttribute('id', `${index}`);
-  removeBookButton.setAttribute('id', 'removeButton');
+  removeBookButton.setAttribute('id', `r${index}`);
 
   readStatusButton.addEventListener('click', (e) => {
     myLibrary[e.target.id].hasRead = !myLibrary[e.target.id].hasRead;
+    refreshCards();
+  });
+
+  removeBookButton.addEventListener('click', (e) => {
+    const bookIndex = e.target.id.slice(1);
+    myLibrary.splice(bookIndex, 1);
     refreshCards();
   });
 
