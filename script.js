@@ -13,9 +13,13 @@ Book.prototype.info = function() {
 
 function addBookToLibrary(title, author, pageCount, hasRead) {
   myLibrary.push(new Book(title, author, pageCount, hasRead));
-  clearCards();
-  myLibrary.forEach((book) => createCard(book));
+  refreshCards();
   clearInputFields();
+}
+
+function refreshCards() {
+  clearCards();
+  myLibrary.forEach((book, index) => createCard(book, index));
 }
 
 function clearCards() {
@@ -115,7 +119,7 @@ function buildForm() {
 }
 
 // The card element
-function createCard(bookObject) {
+function createCard(bookObject, index) {
   const card = document.createElement('div');
   const bookTitle = document.createElement('h2');
   const bookAuthor = document.createElement('h3');
@@ -133,8 +137,14 @@ function createCard(bookObject) {
   readStatusButton.textContent = `${bookObject.hasRead ? 'Mark Unread' : 'Mark Read'}`;
   removeBookButton.textContent = 'Remove from Library';
 
-  readStatusButton.setAttribute('id', 'readStatusButton');
+  readStatusButton.classList.add('readStatusButton');
+  readStatusButton.setAttribute('id', `${index}`);
   removeBookButton.setAttribute('id', 'removeButton');
+
+  readStatusButton.addEventListener('click', (e) => {
+    myLibrary[e.target.id].hasRead = !myLibrary[e.target.id].hasRead;
+    refreshCards();
+  });
 
   card.appendChild(bookTitle);
   card.appendChild(bookAuthor);
@@ -164,6 +174,6 @@ myLibrary.push(testBook3);
 const testBook4 = new Book('Hyperion', 'Dan Simmons', 480, false);
 myLibrary.push(testBook4);
 
-myLibrary.forEach((book) => {
-  createCard(book);
+myLibrary.forEach((book, index) => {
+  createCard(book, index);
 });

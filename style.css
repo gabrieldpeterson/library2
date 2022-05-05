@@ -40,13 +40,14 @@ input {
     padding: 10px;
 }
 
-#readStatusButton {
+.readStatusButton {
     width: fit-content;
 }
 
 #removeButton {
     margin-top: auto;
     background-color: red;
+    color: white;
     width: fit-content;
     align-self: center;
     border-radius: 3px;
