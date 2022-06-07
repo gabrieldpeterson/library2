@@ -1,15 +1,28 @@
 let myLibrary = [];
 
-function Book(title, author, pageCount, hasRead) {
-  this.title = title;
-  this.author = author;
-  this.pageCount = pageCount;
-  this.hasRead = hasRead;
+class Book {
+  constructor(title, author, pageCount, hasRead) {
+    this.title = title;
+    this.author = author;
+    this.hasRead = hasRead;
+    this.pageCount = pageCount;
+  }
+
+  info() {
+    console.log(`${this.title} by ${this.author}, ${this.pageCount} pages, ${this.hasRead ? 'has read' : 'not read yet'}`);
+  }
 }
 
-Book.prototype.info = function() {
-  console.log(`${this.title} by ${this.author}, ${this.pageCount} pages, ${this.hasRead ? 'has read' : 'not read yet'}`);
-}
+// function Book(title, author, pageCount, hasRead) {
+//   this.title = title;
+//   this.author = author;
+//   this.pageCount = pageCount;
+//   this.hasRead = hasRead;
+// }
+
+// Book.prototype.info = function() {
+//   console.log(`${this.title} by ${this.author}, ${this.pageCount} pages, ${this.hasRead ? 'has read' : 'not read yet'}`);
+// }
 
 function addBookToLibrary(title, author, pageCount, hasRead) {
   myLibrary.push(new Book(title, author, pageCount, hasRead));
